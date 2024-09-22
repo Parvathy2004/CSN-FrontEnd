@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './volunteer.css';
 
 const Registration = () => {
@@ -9,22 +10,40 @@ const Registration = () => {
   const [contactNumber, setContactNumber] = useState('');
   const [age, setAge] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    // Handle registration logic here
-    // On successful registration:
-    setSuccessMessage('Registration successful!');
-    setName('');
-    setEmail('');
-    setPassword('');
-    setAddress('');
-    setContactNumber('');
-    setAge('');
-
-    setTimeout(() => {
-      setSuccessMessage('');
-    }, 1000); // Message disappears after 3 seconds
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/Volunteer/registerVolunteer`, {
+        name,
+        email,
+        password,
+        address,
+        contactNumber,
+        age,
+      });      
+      setSuccessMessage(response.data.message);
+      // Reset form fields
+      setName('');
+      setEmail('');
+      setPassword('');
+      setAddress('');
+      setContactNumber('');
+      setAge('');
+      setTimeout(() => {
+        setSuccessMessage('');
+      }, 3000);
+    } catch (error) {
+      if (error.response) {
+        setErrorMessage(error.response.data.error);
+      } else {
+        setErrorMessage('Server error in sending');
+      }
+      setTimeout(() => {
+        setErrorMessage('');
+      }, 3000);
+    }
   };
 
   return (
@@ -77,6 +96,7 @@ const Registration = () => {
           <button type="submit">Register</button>
         </form>
         {successMessage && <div className="success-message">{successMessage}</div>}
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
       </div>
     </div>
   );
