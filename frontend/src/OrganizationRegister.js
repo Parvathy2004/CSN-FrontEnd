@@ -2,26 +2,24 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './volunteer.css';
 
-const VolunteerRegistration = () => {
+const OrganizationRegistration = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [address, setAddress] = useState('');
   const [contactNumber, setContactNumber] = useState('');
-  const [age, setAge] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/volunteer/registerVolunteer`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/organization/registerOrganization`, {
         name,
         email,
         password,
         address,
         contactNumber,
-        age,
       });      
       setSuccessMessage(response.data.message);
       // Reset form fields
@@ -30,13 +28,12 @@ const VolunteerRegistration = () => {
       setPassword('');
       setAddress('');
       setContactNumber('');
-      setAge('');
       setTimeout(() => {
         setSuccessMessage('');
       }, 3000);
     } catch (error) {
       if (error.response) {
-        setErrorMessage(error.response.data.error);
+        setErrorMessage(error.response.data.msg);
       } else {
         setErrorMessage('Server error in sending');
       }
@@ -53,7 +50,7 @@ const VolunteerRegistration = () => {
         <form onSubmit={handleRegister}>
           <input
             type="text"
-            placeholder="Name"
+            placeholder="Name of Organization"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -86,13 +83,6 @@ const VolunteerRegistration = () => {
             onChange={(e) => setContactNumber(e.target.value)}
             required
           />
-          <input
-            type="number"
-            placeholder="Age"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-            required
-          />
           <button type="submit">Register</button>
         </form>
         {successMessage && <div className="success-message">{successMessage}</div>}
@@ -102,4 +92,4 @@ const VolunteerRegistration = () => {
   );
 };
 
-export default VolunteerRegistration;
+export default OrganizationRegistration;

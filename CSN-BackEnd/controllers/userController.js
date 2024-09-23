@@ -5,20 +5,20 @@ require('dotenv').config();
 
 // Register User
 exports.registerUser = async (req, res) => {
-  const { name, email, password, role = 'user' } = req.body;
-
+  const { name, email, password,address,contactNumber, role = 'user' } = req.body;
   try {
     let user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({ msg: 'User already exists' });
     }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    newuser = new User({ name, email, password:hashedPassword,address,contactNumber, role });
 
-    user = new User({ name, email, password, role });
+    await newuser.save();
 
-    await user.save();
-
+    res.status(201).json({ msg: 'User registered successfully', user: newuser });
     const payload = {
-      user: { id: user.id, role: user.role }
+      User: { id: User.id, role: User.role }
     };
 
     jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {

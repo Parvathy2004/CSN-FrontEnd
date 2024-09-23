@@ -10,11 +10,11 @@ app.use(bodyParser.json());
 
 // Define routes
 app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/user', require('./routes/userRoutes'));
+app.use('/api/generaluser', require('./routes/userRoutes'));
 app.use('/api/volunteer', require('./routes/volunteerRoutes'));
-app.use('/api/organization', require('./routes/organizationRoutes'));
+app.use('/api/Organization', require('./routes/organizationRoutes'));
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5500;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

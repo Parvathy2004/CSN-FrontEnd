@@ -10,6 +10,10 @@ const OrganisationSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  password:{
+    type: String,
+    required:true,
+  },
   contactNumber: {
     type: String,
     required: true
@@ -21,15 +25,6 @@ const OrganisationSchema = new mongoose.Schema({
   website: {
     type: String
   },
-  adminUser: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Reference to the User model (the admin user)
-    required: true
-  },
-  date: {
-    type: Date,
-    default: Date.now
-  }
 });
 
 module.exports = mongoose.model('Organisation', OrganisationSchema);

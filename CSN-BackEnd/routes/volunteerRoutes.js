@@ -3,7 +3,6 @@ const { registerVolunteer, getVolunteerProfile } = require('../controllers/volun
 const authMiddleware = require('../middleware/authMiddleWare');
 const router = express.Router();
 
-console.log("in routes");
 // Register Volunteer
 router.post('/registerVolunteer', registerVolunteer);
 

@@ -5,6 +5,7 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const orgRoutes = require('./routes/organizationRoutes');
 const volunteerRoutes = require('./routes/volunteerRoutes'); // Import volunteer routes
+const userRoutes = require('./routes/userRoutes');
 require('dotenv').config();
 
 const app = express();
@@ -22,7 +23,8 @@ connectDB();
 
 // Define routes
 app.use('/api/auth', authRoutes);
-app.use('/api/organisations', orgRoutes);
+app.use('/api/organization', orgRoutes);
+app.use('/api/generaluser', userRoutes);
 app.use('/api/Volunteer', volunteerRoutes); // Add volunteer routes
 
 const PORT = process.env.PORT || 5500;
