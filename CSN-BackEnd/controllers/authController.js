@@ -112,3 +112,27 @@ exports.loginUser = async (req, res) => {
     res.status(500).send('Server error');
   }
 };
+
+
+// Login Admin
+exports.loginAdmin = async (req, res) => {
+  const { email } = req.body;
+  const fixedAdminId = 'your_fixed_admin_id_here'; // Define your fixed admin ID here
+
+  try {
+    // You can perform additional checks if necessary, e.g., validate the email format
+
+    // If the email is valid, return the fixed admin ID
+    const payload = {
+      admin: { id: fixedAdminId },
+    };
+
+    jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
+      if (err) throw err;
+      res.json({ token });
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};

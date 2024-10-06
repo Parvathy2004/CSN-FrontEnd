@@ -51,7 +51,7 @@ const Generaluser = () => {
         <form onSubmit={handleRegister}>
           <input
             type="text"
-            placeholder="Name of Organization"
+            placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required

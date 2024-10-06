@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .App {
+    display: flex;
+    height: 100vh;
+    /*background: linear-gradient(to right, #4CAF50, #8BC34A); /* Green gradient */
+    color: white;
+    text-align: center;
+    
+  }
+  
+  .home-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1; /* Take up the left half */
+    padding: 20px;
+    text-align: left; /* Align text to the left */
+    background-image: url("C:\Users\LENOVO\Desktop\CSN\CSN-FrontEnd\frontend\component\csnicon.jpg");
+  }
+  
+  .home-container h1 {
+    font-size: 3em; /* Large font size */
+    margin: 0;
+  }
+  
+  .button-container {
+    flex: 1; /* Take up the right half */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    
+  }
+  
+  .button-box {
+    width: 300px;
+    height: 400px;
+    background-color: rgb(255, 255, 255); /* Slightly transparent white background */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Box shadow for depth */
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center buttons */
+    justify-content: center;
+    backdrop-filter: blur(1px); /* Apply blur to the background */
+  }
+  
+  .button-box button {
+    background-color: #4CAF50; /* Button background color */
+    color: white; /* Text color for buttons */
+    border: none;
+    border-radius: 5px;
+    padding: 15px 30px;
+    margin: 10px 0;
+    font-size: 1.2em; /* Font size for buttons */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .button-box button:hover {
+    background-color: #388E3C; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly increase button size on hover */
+  }
+  
+  @media (max-width: 768px) {
+    .home-container h1 {
+      font-size: 2em; /* Smaller font size on smaller screens */
+    }
+  
+    .button-box button {
+      padding: 10px 20px; /* Smaller padding on smaller screens */
+      font-size: 1em; /* Smaller font size on smaller screens */
+    }
+  }
+  
